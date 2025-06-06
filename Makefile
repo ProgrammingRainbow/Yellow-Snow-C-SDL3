@@ -42,8 +42,8 @@ else
 endif
 
 ifeq ($(PKG_CONFIG),yes)
-    CFLAGS_BASE += $(shell pkg-config --cflags sdl3 sdl3-image)
-    LDLIBS_BASE += $(shell pkg-config --libs sdl3 sdl3-image)
+    CFLAGS_BASE += $(shell pkg-config --cflags sdl3 sdl3-image sdl3-ttf sdl3-mixer)
+    LDLIBS_BASE += $(shell pkg-config --libs sdl3 sdl3-image sdl3-ttf, sdl3-mixer)
 else
     $(error "pkg-config is not available. Please install pkg-config.")
 endif
