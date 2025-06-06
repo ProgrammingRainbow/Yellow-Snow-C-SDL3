@@ -6,6 +6,26 @@ bool game_init_sdl(struct Game *g) {
         return false;
     }
 
+    if (!TTF_Init()) {
+        fprintf(stderr, "Error initializing SDL3_ttf: %s\n", SDL_GetError());
+        return false;
+    }
+
+    if ((Mix_Init(MIX_FLAGS) & MIX_FLAGS) != MIX_FLAGS) {
+        fprintf(stderr, "Error initializing SDL3_mixer: %s\n", SDL_GetError());
+        return false;
+    }
+
+    SDL_AudioSpec audiospec = {0};
+    audiospec.format = MIX_DEFAULT_FORMAT;
+    audiospec.channels = MIX_DEFAULT_CHANNELS;
+    audiospec.freq = MIX_DEFAULT_FREQUENCY;
+
+    if (!Mix_OpenAudio(0, &audiospec)) {
+        fprintf(stderr, "Error Opening Audio: %s\n", SDL_GetError());
+        return false;
+    }
+
     g->window = SDL_CreateWindow(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
     if (!g->window) {
         fprintf(stderr, "Error creating SDL_Window: %s\n", SDL_GetError());

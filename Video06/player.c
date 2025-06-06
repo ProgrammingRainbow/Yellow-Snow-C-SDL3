@@ -45,6 +45,18 @@ void player_free(struct Player **player) {
     }
 }
 
+float player_left(const struct Player *p) {
+    return p->rect.x + PLAYER_LEFT_OFFSET;
+}
+
+float player_right(const struct Player *p) {
+    return p->rect.x + p->rect.w - PLAYER_RIGHT_OFFSET;
+}
+
+float player_top(const struct Player *p) {
+    return p->rect.y + PLAYER_TOP_OFFSET;
+}
+
 void player_update(struct Player *p) {
     if (p->keystate[SDL_SCANCODE_LEFT] || p->keystate[SDL_SCANCODE_A]) {
         p->rect.x -= PLAYER_VEL;

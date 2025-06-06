@@ -45,19 +45,31 @@ void player_free(struct Player **player) {
     }
 }
 
-void player_update(struct Player *p) {
+float player_left(const struct Player *p) {
+    return p->rect.x + PLAYER_LEFT_OFFSET;
+}
+
+float player_right(const struct Player *p) {
+    return p->rect.x + p->rect.w - PLAYER_RIGHT_OFFSET;
+}
+
+float player_top(const struct Player *p) {
+    return p->rect.y + PLAYER_TOP_OFFSET;
+}
+
+void player_update(struct Player *p, float dt) {
     if (p->keystate[SDL_SCANCODE_LEFT] || p->keystate[SDL_SCANCODE_A]) {
-        p->rect.x -= PLAYER_VEL;
+        p->rect.x -= PLAYER_VEL * dt;
         if (p->rect.x + PLAYER_LEFT_OFFSET < 0) {
             p->rect.x = -PLAYER_LEFT_OFFSET;
         }
         p->flip = SDL_FLIP_HORIZONTAL;
     }
     if (p->keystate[SDL_SCANCODE_RIGHT] || p->keystate[SDL_SCANCODE_D]) {
+        p->rect.x += PLAYER_VEL * dt;
         if (p->rect.x + p->rect.w - PLAYER_RIGHT_OFFSET > WINDOW_WIDTH) {
             p->rect.x = WINDOW_WIDTH + PLAYER_RIGHT_OFFSET - p->rect.w;
         }
-        p->rect.x += PLAYER_VEL;
         p->flip = SDL_FLIP_NONE;
     }
 }

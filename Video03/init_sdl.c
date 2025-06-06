@@ -18,6 +18,8 @@ bool game_init_sdl(struct Game *g) {
         return false;
     }
 
+    SDL_SetWindowSize(g->window, WINDOW_WIDTH, WINDOW_HEIGHT);
+
     SDL_Surface *icon_surf = IMG_Load("images/yellow.png");
     if (!icon_surf) {
         fprintf(stderr, "Error loading Surface: %s\n", SDL_GetError());

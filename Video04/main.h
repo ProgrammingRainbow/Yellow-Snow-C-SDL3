@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define SDL_FLAGS SDL_INIT_VIDEO
 
@@ -18,5 +19,8 @@
 #define PLAYER_TOP_OFFSET 10
 #define PLAYER_LEFT_OFFSET 47
 #define PLAYER_RIGHT_OFFSET 42
+
+#define WHITE_FLAKES 10
+#define YELLOW_FLAKES 5
 
 #endif
