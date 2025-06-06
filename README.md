@@ -45,5 +45,6 @@ Left Arrow - Moves left.\
 Right Arrow - Moves right.\
 Space Bar - Resets the Game.\
 Escape - Quits and closes game. \
+M - Toggles muting the music. \
 F - Prints FPS to the console.
 
